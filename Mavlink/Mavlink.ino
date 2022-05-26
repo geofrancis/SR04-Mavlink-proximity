@@ -3,7 +3,6 @@
 #include "mavlink_msg_distance_sensor.h"
 #include <Wire.h>
 #include <NewPing.h>
-#include <VL53L1X.h>
 const int MIN = 10;
 const int MAX = 1600;
 const int idle = 200;

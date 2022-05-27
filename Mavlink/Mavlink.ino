@@ -4,9 +4,9 @@
 #include <Wire.h>
 #include <NewPing.h>
 const int MIN = 10;
-const int MAX = 1600;
+const int MAX = 5000;
 const int idle = 200;
-const int Scale = 10;
+const int Scale = 1;
 const int RMIN = 10;
 const int RMAX = 350;
 
@@ -30,7 +30,7 @@ struct Sensores {
 };
 
 //The variables of each sensor are started
-#define NSensores 5
+#define NSensores 4
 Sensores Sensor[NSensores];
 
 
@@ -61,6 +61,7 @@ void FSensores() {
   ShiftArrays();
   MedirSensores();
   MediaDistancias();
+ delay(10);
 
 }
 
@@ -100,17 +101,17 @@ void MediaDistancias() {
       Sensor[i].MediaDistancias = 0;
     }
   }
-  Serial.print("\n\rDistancias: ");
-  Serial.print(Sensor[0].MediaDistancias);
-  Serial.print(",");
-  Serial.print(Sensor[1].MediaDistancias);
-  Serial.print(",");
-  Serial.print(Sensor[2].MediaDistancias);
-  Serial.print(",");
-  Serial.print(Sensor[3].MediaDistancias);
-  Serial.print(",");
-  Serial.print(Sensor[4].MediaDistancias);
-  Serial.print("cm\n\r");
+  //Serial.print("\n\rDistancias: ");
+ //Serial.print(Sensor[0].MediaDistancias);
+ // Serial.print(",");
+ // Serial.print(Sensor[1].MediaDistancias);
+ // Serial.print(",");
+ // Serial.print(Sensor[2].MediaDistancias);
+ // Serial.print(",");
+ // Serial.print(Sensor[3].MediaDistancias);
+//  Serial.print(",");
+ // Serial.print(Sensor[4].MediaDistancias);
+ // Serial.print("cm\n\r");
 }
 
 
@@ -142,7 +143,6 @@ void command_heartbeat() {
   // Send the message 
   //delay(1);
   Serial.write(buf, len);
-    Serial.println ("heartbeat");
 }
 
 
@@ -152,7 +152,7 @@ void command_distance_1() {
   float Sensor1Smooth  = Sensor[0].MediaDistancias;
   Sensor1Smooth = constrain(Sensor1Smooth, MIN , MAX);
   float dist1 = Sensor1Smooth / Scale;
-
+  
   //MAVLINK DISTANCE MESSAGE
   int sysid = 1;                   
   //< The component sending the message.

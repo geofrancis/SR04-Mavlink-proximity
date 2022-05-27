@@ -4,9 +4,9 @@
 #include <Wire.h>
 #include <NewPing.h>
 const int MIN = 10;
-const int MAX = 5000;
+const int MAX = 300;
 const int RMIN = 10;
-const int RMAX = 350;
+const int RMAX = 300;
 
 NewPing sonar0(3, 4, 300);
 NewPing sonar1(5, 6, 300);

@@ -5,8 +5,6 @@
 #include <NewPing.h>
 const int MIN = 10;
 const int MAX = 5000;
-const int idle = 200;
-const int Scale = 1;
 const int RMIN = 10;
 const int RMAX = 350;
 
